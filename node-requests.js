@@ -3,7 +3,7 @@ let async = require('async');
 // const uuidv1 = require('uuid/v1');
 let domainURL = 'https://example.com'
 
-let calls = new Array(20);
+let calls = new Array(10);
 let val1 = 0, val2 = 0;
 
 function race_web(){
@@ -22,6 +22,8 @@ function race_web(){
                 headers: {
                     "accept-encoding": "gzip, deflate, br"
                 }
+            }, function(err, resp, body){
+                console.log("RESP FOR KEY "+k, body)
             })
         })()
         setTimeout(function(){
@@ -31,7 +33,7 @@ function race_web(){
         console.log("all calls done")
         setTimeout(function(){
             race_web()
-        }, 1000);
+        }, 4000);
     })
 }
 
